@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import moment from 'moment'
-import './PlayVideo.css'
 
 import like from '../../assets/like.png'
 import dislike from '../../assets/dislike.png'
@@ -9,8 +9,11 @@ import save from '../../assets/save.png'
 import user_profile from '../../assets/user_profile.jpg'
 import { API_KEY } from '../../data'
 import { valueConverter } from '../../Helpers/valueConverter'
+import './PlayVideo.css'
 
-const PlayVideo = ({videoId}) => {
+const PlayVideo = () => {
+
+    const {videoId} = useParams();
 
     const [apiData, setApiData] = useState(null);
     const [channelData, setChannelData] = useState(null);
@@ -41,7 +44,7 @@ const PlayVideo = ({videoId}) => {
 
     useEffect(() => {
         fetchVideoData();
-    }, [])
+    }, [videoId])
 
     useEffect(() => {
         fetchOtherData();
